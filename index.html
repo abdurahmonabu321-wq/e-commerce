@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever Luxury Mega Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo" onclick="resetToHome()">FOREVER<span>.</span></div>
+        
+        <nav class="nav-links">
+            <a href="#" class="nav-item active" onclick="switchPage('home', this)">Bosh sahifa</a>
+            <a href="#" class="nav-item" onclick="switchPage('collection', this)">Kolleksiya</a>
+            <a href="#" class="nav-item" onclick="switchPage('about', this)">Biz haqimizda</a>
+            <a href="#" class="nav-item" onclick="switchPage('contact', this)">Aloqa</a>
+        </nav>
+
+        <div class="nav-actions">
+            <svg class="icon-btn" id="search-trigger" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <svg class="icon-btn" id="profile-trigger" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            
+            <div class="cart-icon-wrapper" id="cart-trigger">
+                <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <span id="cart-count">0</span>
+            </div>
+
+            <div class="lang-selector">
+                <button id="lang-btn">UZ</button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button onclick="changeLang('UZ')">UZ</button>
+                    <button onclick="changeLang('EN')">EN</button>
+                    <button onclick="changeLang('RU')">RU</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="search-modal">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Mahsulotlarni qidiring..." oninput="filterProductsByName()">
+            <svg class="icon-btn" id="search-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:25px; height:25px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </div>
+    </div>
+
+    <div class="profile-overlay" id="profile-overlay">
+        <div class="profile-modal" id="profile-modal">
+            <div class="profile-modal-header">
+                <h3>Tizimga kirish</h3>
+                <svg class="icon-btn" id="profile-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px; height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); alert('Muvaffaqiyatli kirildi!'); closeAllModals();">
+                <input type="email" placeholder="Email" required style="margin-bottom: 15px;">
+                <input type="password" placeholder="Parol" required style="margin-bottom: 20px;">
+                <button type="submit" class="gold-btn">Kirish</button>
+            </form>
+        </div>
+    </div>
+
+    <main id="home-page" class="page-section active">
+        
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-text-side">
+                    <div class="subtitle-wrapper"><div class="line"></div><span>Yangi Kolleksiya 2026</span></div>
+                    <h1>Premium Oltin Va Qora Uslubdagi Liboslar</h1>
+                    <a href="#" class="shop-btn" onclick="switchPage('collection')">Hozir xarid qilish<div class="btn-line"></div></a>
+                </div>
+                <div class="hero-image-side">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=cover" alt="Hero">
+                </div>
+            </div>
+        </div>
+
+        <div class="category-stories-container">
+            <div class="story-item" onclick="filterByStory('men')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=150" alt="Erkaklar"></div>
+                <span class="story-name" data-key="m_men">Erkaklar</span>
+            </div>
+            <div class="story-item" onclick="filterByStory('women')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=150" alt="Ayollar"></div>
+                <span class="story-name" data-key="m_women">Ayollar</span>
+            </div>
+            <div class="story-item" onclick="filterByStory('kids')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?q=80&w=150" alt="Bolalar"></div>
+                <span class="story-name" data-key="m_kids">Bolalar</span>
+            </div>
+            <div class="story-item" onclick="filterByStory('shoes')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=150" alt="Oyoq kiyim"></div>
+                <span class="story-name" data-key="m_shoes">Oyoq kiyim</span>
+            </div>
+            <div class="story-item" onclick="filterByStory('caps')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1534215754734-18e55d13ce35?q=80&w=150" alt="Bosh kiyim"></div>
+                <span class="story-name" data-key="m_caps">Bosh kiyim</span>
+            </div>
+            <div class="story-item" onclick="filterByStory('bags')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=150" alt="Sumkalar"></div>
+                <span class="story-name" data-key="m_bags">Sumkalar</span>
+            </div>
+            <div class="story-item" onclick="filterByStory('accessories')">
+                <div class="story-circle"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=150" alt="Aksessuarlar"></div>
+                <span class="story-name" data-key="m_acc">Aksessuarlar</span>
+            </div>
+        </div>
+
+        <section class="collection-section">
+            <div class="section-header">
+                <div class="section-title"><div class="title-line"></div><span id="main-grid-title">Barcha Mahsulotlar</span></div>
+                <p id="main-grid-sub">Siz uchun eng sara va qimmatbaho dizayndagi mahsulotlarimiz</p>
+            </div>
+            <div class="products-grid" id="home-products-grid"></div>
+        </section>
+    </main>
+
+    <div id="collection-page" class="page-section">
+        <div class="collection-layout">
+            <aside class="filter-sidebar">
+                <h3 data-key="categories">Kategoriyalar</h3>
+                <div class="filter-group" id="sidebar-filters"></div>
+            </aside>
+            <main class="collection-main">
+                <div class="products-grid" id="collection-products-grid"></div>
+            </main>
+        </div>
+    </div>
+
+    <div id="about-page" class="page-section">
+        <div class="about-container">
+            <h2>Biz Haqimizda</h2>
+            <div class="about-line"></div>
+            <p>Biz eng yuqori sifatli matolardan tayyorlangan premium kiyimlarni taqdim etib kelmoqdamiz.</p>
+        </div>
+    </div>
+
+    <div id="contact-page" class="page-section">
+        <div class="contact-container">
+            <h2>Biz bilan aloqa</h2>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Xabaringiz yuborildi!'); this.reset();">
+                <input type="text" placeholder="Ismingiz" required>
+                <input type="email" placeholder="Email manzilingiz" required>
+                <textarea rows="6" placeholder="Xabaringiz matni..." required></textarea>
+                <button type="submit" class="gold-btn">Xabarni yuborish</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2>Sizning savatingiz</h2>
+            <svg class="icon-btn" id="cart-close" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:22px; height:22px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </div>
+        <div class="cart-main-content" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="total-wrapper"><span>Jami summa:</span><span id="cart-total-price">0 USD</span></div>
+            <button class="checkout-btn" onclick="openCheckoutModal()">To'lov sahifasiga o'tish</button>
+        </div>
+    </div>
+
+    <div id="checkout-overlay">
+        <div id="checkout-modal">
+            <div class="checkout-header">
+                <h2>Xaridni rasmiylashtirish</h2>
+                <span id="checkout-close">X</span>
+            </div>
+            <form id="checkout-form">
+                <input type="text" placeholder="Ism va Familiyangiz" required>
+                <input type="text" placeholder="Yetkazib berish manzili" required>
+                <input type="text" placeholder="Telefon raqamingiz" required>
+                <input type="text" placeholder="Karta raqami (16 talik)" required>
+                <div class="checkout-summary">
+                    <span>To'lov miqdori:</span>
+                    <span id="checkout-total-price">0 USD</span>
+                </div>
+                <button type="submit" class="submit-order-btn">Buyurtmani tasdiqlash</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
