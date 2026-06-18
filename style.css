@@ -301,3 +301,147 @@ h1, h2, h3, .logo { font-family: 'Space Grotesk', sans-serif; }
     .product-card h3 { font-size: 0.85rem; }
     .hero-text-side h1 { font-size: 1.8rem; }
 }
+/* ✨ SAHIFALAR ALMASHGANDA SEKIN OCHILISH EFFEKTI (FADE-IN) */
+.page-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.page-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 💎 MAHSULOT KARTALARI UCHUN LUXURY HOVER EFFEKTLARI */
+.product-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+/* Sichqoncha kartaga kelganda: karta tepaga ko'tariladi va soyasi chuqurlashadi */
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Rasm konteyneri */
+.img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Kartaning ichidagi rasm sekin kattalashishi (Zoom effekt) */
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .img-container img {
+    transform: scale(1.06); /* Rasmni 6% ga kattalashtiradi */
+}
+
+/* 🛒 SAVATGA QO'SHISH TUGMASI EFFEKTI */
+.add-to-cart-btn {
+    position: absolute;
+    bottom: -50px; /* Oldindan yashirin turadi */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 85%;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+}
+
+/* Karta ustiga sichqoncha kelganda tugma pastdan silliq chiqadi */
+.product-card:hover .add-to-cart-btn {
+    bottom: 15px;
+    opacity: 1;
+}
+
+/* Tugma ustiga kelgandagi oltin-qora effekt */
+.add-to-cart-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Tugma bosilgandagi (Click) effekt */
+.add-to-cart-btn:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+/* 🔴 DUMALOQ KATEGORIYALAR (STORIES) PULSATSING EFFEKTI */
+.story-item {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.story-circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    padding: 3px;
+    border: 2px solid #d4af37; /* Oltin rangli halqa */
+    transition: all 0.4s ease;
+}
+
+.story-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Story ustiga kelganda halqa aylanib yaltiraydi */
+.story-item:hover .story-circle {
+    transform: scale(1.08);
+    border-color: #000;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+.story-item:hover {
+    transform: translateY(-2px);
+}
+
+/* 💳 TO'LOV TUGMASI (SUBMIT) YALTIRASH EFFEKTI */
+.submit-order-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.submit-order-btn:hover {
+    background: #222;
+}
+
+.submit-order-btn:active {
+    transform: scale(0.98);
+}
